@@ -1,12 +1,16 @@
-// Add Express
-const express = require("express");
-// Initialize Express
-const app = express();
-// Create GET request
-app.get("/", (req, res) => {
-  res.send("Express on Vercel");
+const app = require('express')();
+const { v4 } = require('uuid');
+
+app.get('/api', (req, res) => {
+  const path = `/api/item/${v4()}`;
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
 });
-// Initialize server
-app.listen(3000, () => {
-  console.log("Running on port 5000.");
+
+app.get('/api/item/:slug', (req, res) => {
+  const { slug } = req.params;
+  res.end(`Item: ${slug}`);
 });
+
+module.exports = app;

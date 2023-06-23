@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/zain-yazdan/Mock-Api#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
   }
 }
